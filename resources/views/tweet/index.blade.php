@@ -19,6 +19,7 @@
             <p style="color: green">{{ session('feedback.success') }}</p>
         @endif
         <form action="{{ route('tweet.create') }}" method="post">
+            {{-- コードを付け加えます --}}
             @csrf
             <label for="tweet-content">つぶやき</label>
             <span>140文字まで</span>
