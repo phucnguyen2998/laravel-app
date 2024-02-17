@@ -19,10 +19,12 @@ class CreateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'tweet' => 'required|max:140'
+            'tweet' => 'required|max:140',
+            'images' => 'array|max:4',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 // Requestクラスのuser関数で今自分がログインしているユーザーが取得できる
@@ -30,4 +32,8 @@ public function userId(): int
 {
     return $this->user()->id;
 }
+public function images(): array
+    {
+        return $this->file('images', []);
+    }
 }
